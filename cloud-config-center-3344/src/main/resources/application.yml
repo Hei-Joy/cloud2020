@@ -1,0 +1,43 @@
+server:
+  port: 3344
+
+  #测试跟新配置
+  #http://config-3344.com:3344/config-dev.yml
+  #http://localhost:3355/configInfo
+  #http://localhost:3366/configInfo
+
+  #post发送http://config-3344.com:3344/actuator/bus-refresh全部通知
+  #post发送http://config-3344.com:3344/actuator/bus-refresh/config-client:3355定点通知
+
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          #ssh或者https链接github
+          #uri: git@github.com:Hei-Joy/springcloud-config.git
+          uri: https://github.com/Hei-Joy/springcloud-config.git
+          #搜索目录
+          search-paths:
+            - springcloud-config
+      #读取分支
+      label: master
+  rabbitmq: #rabbitmq相关配置，15672是web管理端口，5672是mq访问端口
+    port: 5672
+    host: 192.168.234.128
+    username: guest
+    password: guest
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka
+
+# 暴露bus刷新配置的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
