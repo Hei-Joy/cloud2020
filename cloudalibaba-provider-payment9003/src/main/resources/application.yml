@@ -1,5 +1,5 @@
 server:
-  port: 9002
+  port: 9003
 
 spring:
   application:
@@ -7,9 +7,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.234.128:1111
-      #server-addr: localhost:8848
-
+        server-addr: localhost:8848
 
 management:
   endpoints:
